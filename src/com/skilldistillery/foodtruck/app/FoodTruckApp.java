@@ -15,6 +15,7 @@ public class FoodTruckApp {
 		foodTruck.FoodTruckGenerator();
 		foodTruck.makeMenu();
 		foodTruck.Switch();
+
 	
 
 	}
@@ -109,51 +110,24 @@ public class FoodTruckApp {
 		return false;
 	}
 
-	public void displayTrucks(FoodTruck[] trucks) {
-		System.out.println("All existing Food Trucks: ");
-		for (int i = 0; i < trucks.length; i++) {
-			System.out.println(trucks[i].toString());
-		}
 
-	}
-
-	public void displayAverage(FoodTruck[] rating) {
-		int sum = 0;
-		for (int i = 0; i < rating.length; i++) {
-			sum += rating[i].getRating();
-		}
-		int average = sum / rating.length;
-		System.out.println("Average of all existing Food Trucks: ");
-
-	}
-
-	public void displayHighest(FoodTruck[] trucks) {
-		int rating = trucks[0].getRating();
-		
-		for(int i = 0; i < trucks.length; i++) {
-			if (trucks[i].getRating() > rating) {
-				rating = trucks[i].getRating();
-			}
-			
-
-		}
-	}
 	public void output(FoodTruck[] truck) {
 		Scanner sc = new Scanner (System.in);
+		FoodTruck FT = new FoodTruck();
 		int selection = 0;
 		
 		switch(selection) {
 		
 		case 1 :
-			displayTrucks(truck);
+			FT.listTrucks(truck);
 			break;
 			
 		case 2 :
-			displayAverage(truck);
+			FT.displayAverage(truck);
 			break;
 			
 		case 3:
-			displayHighest(truck);
+			FT.displayHighest(truck);
 			break;
 		case 4:
 			System.out.println("Quit the Program");
