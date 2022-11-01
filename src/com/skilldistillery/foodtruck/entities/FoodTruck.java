@@ -64,36 +64,6 @@ public class FoodTruck {
 		return "FoodTruck TruckId = " + TruckId + ", name = " + name + ", food = " + food + ", rating = " + rating
 				+ "]";
 	}
-
-	public void listTrucks(FoodTruck[] trucks) {
-		for (FoodTruck foodTruck : trucks) {
-			if (foodTruck == null) {
-				break;
-			} else {
-				System.out.println("Food Truck: " + foodTruck.name + "\n" + "Food Type: " + foodTruck.food + "\n"
-						+ "Rating: " + foodTruck.rating + "\n" + "Truck ID: " + foodTruck.TruckId);
-			}
-		}
-	}
-
-	public void displayAverage(FoodTruck[] rating) {
-		int sum = 0;
-		for (int i = 0; i < rating.length; i++) {
-			sum += rating[i].getRating();
-		}
-		int average = sum / rating.length;
-		System.out.println("Average of all existing Food Trucks: ");
-
-	}
-	public void displayHighest(FoodTruck[] trucks) {
-		int rating = trucks[0].getRating();
 		
-		for(int i = 0; i < trucks.length; i++) {
-			if (trucks[i].getRating() > rating) {
-				rating = trucks[i].getRating();
-			}
-			
-
-		}
 	}
-}
+
