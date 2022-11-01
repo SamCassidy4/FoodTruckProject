@@ -12,11 +12,10 @@ public class FoodTruck {
 
 	}
 
-	public FoodTruck(String name, String food, int rating, int TruckId) {
+	public FoodTruck(String name, String food, int rating) {
 		this.name = name;
 		this.food = food;
 		this.rating = rating;
-		this.nextTruckId = TruckId;
 
 	}
 

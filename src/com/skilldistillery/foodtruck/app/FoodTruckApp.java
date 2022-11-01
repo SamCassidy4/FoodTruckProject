@@ -7,16 +7,72 @@ import com.skilldistillery.foodtruck.entities.FoodTruck;
 public class FoodTruckApp {
 
 	public static void main(String[] args) {
+
+		Scanner keyboard = new Scanner(System.in);
 		FoodTruckApp foodTruck = new FoodTruckApp();
 
 		System.out.println("Welome to Food Truck Fanatics!");
 		System.out.println();
 
-		foodTruck.FoodTruckGenerator();
-		foodTruck.makeMenu();
-		foodTruck.Switch();
+		FoodTruck[] foodTruckArr = foodTruck.foodTruckGenerator();
 
-	
+		int menu = 0;
+		do {
+			System.out.println("Please select one of the following");
+			foodTruck.makeMenu();
+			menu = keyboard.nextInt();
+			if (menu < 1 || menu > 4) {
+				System.out.println("Selection incompatible, please try again");
+
+			}
+			if (menu == 4) {
+				System.out.println("Thank you for your time.");
+				break;
+			}
+
+			switch (menu) {
+
+			case 1:
+				System.out.println("Listing all existing Food Trucks: ");
+				for (FoodTruck truck : foodTruckArr) {
+					System.out.println(truck.toString());
+				}
+				continue;
+			case 2:
+				int counter = 0;
+				double sum = 0;
+				System.out.println("See the Average rating of the Trucks: ");
+				for (FoodTruck truck : foodTruckArr) {
+					if (truck == null) {
+						continue;
+					}
+					counter++;
+					sum += truck.getRating();
+				}
+				System.out.print(sum / counter);
+				break;
+			case 3:
+				String winning = "none";
+				int counting = 0;
+				int highest = 0;
+				System.out.println("Display the Highest-Rated Food Truck: ");
+				for (FoodTruck truck : foodTruckArr) {
+					if (truck == null) {
+						continue;
+					}
+					counting++;
+					if (truck.getRating() > highest) {
+						highest = truck.getRating();
+						winning = truck.getName();
+					}
+				}
+
+			default:
+				System.out.println("That is not a valid selection");
+				break;
+
+			}
+		} while (menu < 1 || menu > 4);
 
 	}
 
@@ -39,25 +95,25 @@ public class FoodTruckApp {
 		System.out.println("|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|");
 	}
 
-	public FoodTruck[] FoodTruckGenerator() {
+	public FoodTruck[] foodTruckGenerator() {
 
 		Scanner userInput = new Scanner(System.in);
 		System.out.println("How many trucks would you like to enter?");
 		int index = userInput.nextInt();
 		FoodTruck[] foodTruckArr = new FoodTruck[index];
-		System.out.println("Please enter the Food Truck(s) you would like to review");
-		String name = userInput.next();
 		for (int i = 0; i < foodTruckArr.length; i++) {
-			if (foodTruckArr.equals("quit")) {
+			System.out.println("Please enter the Food Truck(s) you would like to review");
+			String name = userInput.next();
+			if (name.equals("quit")) {
 				break;
 			}
+			userInput.nextLine();
 			System.out.println("Please enter a food item:");
 			String foodName = userInput.nextLine();
-			foodName = userInput.next();
 
 			System.out.println("Please enter a star rating from 1-5: ");
 			int rating = userInput.nextInt();
-			String flush = userInput.nextLine();
+			userInput.nextLine();
 			System.out.println("Thank you for your responses!");
 			if (rating < 1 || rating > 5) {
 				System.out.println("That review does not match up with the scale");
@@ -65,77 +121,10 @@ public class FoodTruckApp {
 				// appropriately set truck names, food type, rating, and random Id =i
 
 			}
+			FoodTruck truck = new FoodTruck(name, foodName, rating);
+			foodTruckArr[i] = truck;
 
 		}
 		return foodTruckArr;
 	}
-
-	public boolean Switch() {
-		Scanner keyboard = new Scanner(System.in);
-		do {
-			System.out.println("Please select one of the following");
-			int menu = keyboard.nextInt();
-			if (menu < 1 || menu > 4) {
-				System.out.println("Selection incompatible, please try again");
-
-			}
-			while (menu < 1 || menu > 4)
-				;
-			if (menu == 4) {
-				System.out.println("Thank you for your time.");
-				break;
-			}
-
-			switch (menu) {
-
-			case 1:
-				System.out.println("Listing all existing Food Trucks: ");
-				break;
-			case 2:
-				System.out.println("See the Average rating of the Trucks: ");
-
-				break;
-			case 3:
-				System.out.println("Display the Highest-Rated Food Truck: ");
-				break;
-			case 4:
-				System.out.println("Quit the Program");
-				break;
-			default:
-				System.out.println("That is not a valid selection");
-				break;
-
-			}
-		} while (true);
-		return false;
-	}
-
-
-	public void output(FoodTruck[] truck) {
-		Scanner sc = new Scanner (System.in);
-		FoodTruck FT = new FoodTruck();
-		int selection = 0;
-		
-		switch(selection) {
-		
-		case 1 :
-			FT.listTrucks(truck);
-			break;
-			
-		case 2 :
-			FT.displayAverage(truck);
-			break;
-			
-		case 3:
-			FT.displayHighest(truck);
-			break;
-		case 4:
-			System.out.println("Quit the Program");
-			break;
-			
-			default:
-				System.out.println("That is not a valid selection");
-		}
-	}
-
 }
