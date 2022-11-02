@@ -35,6 +35,9 @@ public class FoodTruckApp {
 			case 1:
 				System.out.println("Listing all existing Food Trucks: ");
 				for (FoodTruck truck : foodTruckArr) {
+					if (truck == null) {
+						continue;
+					}
 					System.out.println(truck.toString());
 				}
 				continue;
@@ -102,7 +105,7 @@ public class FoodTruckApp {
 		int index = userInput.nextInt();
 		FoodTruck[] foodTruckArr = new FoodTruck[index];
 		for (int i = 0; i < foodTruckArr.length; i++) {
-			System.out.println("Please enter the Food Truck(s) you would like to review");
+			System.out.println("Please enter the name of the Food Truck(s) you would like to review");
 			String name = userInput.next();
 			if (name.equals("quit")) {
 				break;

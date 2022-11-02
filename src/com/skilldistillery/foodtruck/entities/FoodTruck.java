@@ -1,12 +1,12 @@
 package com.skilldistillery.foodtruck.entities;
 
 public class FoodTruck {
-	private static int nextTruckId = 100;
-	private int TruckId;
+	private static int nextTruckId;
+	private int TruckId = (int)Math.random() *1 +1000;
 	private String name;
 	// unique numeric id
 	private String food;
-	private int rating = 0;
+	private int rating;
 
 	public FoodTruck() {
 
@@ -61,9 +61,11 @@ public class FoodTruck {
 	}
 
 	public String toString() {
-		return "FoodTruck TruckId = " + TruckId + ", name = " + name + ", food = " + food + ", rating = " + rating
+		return "FoodTruck TruckId = " + getTruckId() + ", name = " + name + ", food = " + food + ", rating = " + rating
 				+ "]";
 	}
 		
+
 	}
+		
 
