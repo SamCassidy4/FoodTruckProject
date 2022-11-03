@@ -16,6 +16,8 @@ public class FoodTruck {
 		this.name = name;
 		this.food = food;
 		this.rating = rating;
+		this.TruckId = TruckId;
+		TruckId++;
 
 	}
 
