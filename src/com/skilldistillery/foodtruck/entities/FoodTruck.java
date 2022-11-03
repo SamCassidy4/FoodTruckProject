@@ -1,8 +1,8 @@
 package com.skilldistillery.foodtruck.entities;
 
 public class FoodTruck {
-	private static int nextTruckId;
-	private int TruckId = (int)Math.random() *1 +1000;
+	private static int nextTruckId = 1;
+	private int truckId;
 	private String name;
 	// unique numeric id
 	private String food;
@@ -16,26 +16,19 @@ public class FoodTruck {
 		this.name = name;
 		this.food = food;
 		this.rating = rating;
-		this.TruckId = TruckId;
-		TruckId++;
-
-	}
-
-	public static int getNextTruckId() {
-		return nextTruckId;
-	}
-
-	public static void setNextTruckId(int nextTruckId) {
-		FoodTruck.nextTruckId = nextTruckId;
+		this.truckId = nextTruckId;
 		nextTruckId++;
+	
+		
+
 	}
 
 	public int getTruckId() {
-		return TruckId;
+		return truckId;
 	}
 
 	public void setTruckId(int truckId) {
-		TruckId = truckId + nextTruckId;
+		this.truckId = truckId;
 	}
 
 	public String getName() {
@@ -62,12 +55,15 @@ public class FoodTruck {
 		this.rating = rating;
 	}
 
+	@Override
 	public String toString() {
-		return "FoodTruck TruckId = " + getTruckId() + ", name = " + name + ", food = " + food + ", rating = " + rating
-				+ "]";
+		return "FoodTruck [TruckId=" + truckId + ", name=" + name + ", food=" + food + ", rating=" + rating + "]";
+	}
+
+	
 	}
 		
 
-	}
+	
 		
 
